@@ -1,0 +1,7 @@
+export const GET_BANNER = 'ht/get_swiper_banner'
+export const CHANGE_CURRENT_INDEX = 'ht/change_current_index'
+export const GET_HOT_RECOMMEND = 'ht/get_hot_recommend'
+export const GET_NEW_ABLUM = 'ht/get_new_album'
+export const GET_UP_RANKING = 'ht/get_up_ranking'
+export const GET_NEW_RANKING = 'ht/get_new_ranking'
+export const GET_ORIGINAL_RANKING = 'ht/get_original_ranking'

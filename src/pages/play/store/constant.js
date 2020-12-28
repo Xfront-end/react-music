@@ -1,0 +1,7 @@
+export const CHANGE_CURRENT_SONG = 'ht/change_current_song'
+export const CHANGE_CURRENT_INDEX = 'ht/change_current_index'
+export const CHANGE_LYRIC = 'ht/change_lyric'
+export const CHANGE_PLAYLIST = 'ht/change_playlist'
+export const CHANGE_SIMI_PLAYLIST = 'ht/change_simi_playlist'
+export const CHANGE_SIMI_SONG = 'ht/change_simi_song'
+export const CHANGE_PLAY_METHOD = 'ht/change_play_method'
