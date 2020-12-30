@@ -132,3 +132,19 @@ span:hover.link {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.flex {
+  display: flex;
+}
+
+.flex-v-h {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-h-sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

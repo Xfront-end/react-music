@@ -1,12 +1,6 @@
 import styled from 'styled-components'
 
-const backGroundMixin = (width, height, posX, poxY) => `
-  display: inline-block;
-  width: ${width}px;
-  height: ${height}px;
-  background-position: ${posX}px ${poxY}px;
-  cursor: pointer
-`
+import { backGroundMixin } from '@/utils/styleMixin'
 
 export const MusicPlayerWrapper = styled.div`
   position: fixed;

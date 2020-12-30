@@ -10,6 +10,7 @@ import
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { Slider } from 'antd'
+import Panel from '../panel'
 import {
   changePlayMethodAction,
   getSongDetailAction,
@@ -81,6 +82,7 @@ export default memo(() => {
     
   return (
     <MusicPlayerWrapper className="sprite_playbar">
+      <Panel></Panel>
       <audio 
         ref={playerRef} 
         src={`https://music.163.com/song/media/outer/url?id=${song.id}.mp3`} 
