@@ -1,9 +1,12 @@
 import immutable from 'immutable'
 import * as constant from './constant'
+import { playlist as mockPlayList } from '@/request/localData.js'
 
 const initalState = immutable.Map({
-  currentSongIndex: -1,
-  playlist: [],
+  currentSongIndex: 0,
+  playlist: [
+    ...mockPlayList
+  ],
   currentSong: {},
   lyric: [],
   method: 0,

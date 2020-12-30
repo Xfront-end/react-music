@@ -252,3 +252,243 @@ export const artistCategories = [
     ]
   },
 ]
+
+export const playlist = [
+  {
+    "name": "星星在唱歌（纯音乐）",
+    "id": 1803321138,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+      {
+        "id": 12157336,
+        "name": "CMJ",
+        "tns": [],
+        "alias": []
+      }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "",
+    "fee": 8,
+    "v": 10,
+    "crbt": null,
+    "cf": "",
+    "al": {
+      "id": 120264162,
+      "name": "星星在唱歌（网易云音乐2020年度听歌报告主题曲）",
+      "picUrl": "https://p1.music.126.net/sKikAjTxCmWnWTKoul6Sqg==/109951165574428569.jpg",
+      "tns": [],
+      "pic_str": "109951165574428569",
+      "pic": 109951165574428580
+    },
+    "dt": 176530,
+    "h": {
+      "br": 320000,
+      "fid": 0,
+      "size": 7063554,
+      "vd": 18164
+    },
+    "m": {
+      "br": 192000,
+      "fid": 0,
+      "size": 4238150,
+      "vd": 20796
+    },
+    "l": {
+      "br": 128000,
+      "fid": 0,
+      "size": 2825448,
+      "vd": 22528
+    },
+    "a": null,
+    "cd": "01",
+    "no": 2,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 0,
+    "s_id": 0,
+    "mark": 8192,
+    "originCoverType": 0,
+    "originSongSimpleData": null,
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "rtype": 0,
+    "rurl": null,
+    "mst": 9,
+    "cp": 1420032,
+    "mv": 0,
+    "publishTime": 1609084800000
+  },
+  {
+    "name": "一生",
+    "id": 1805190944,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+      {
+        "id": 32007337,
+        "name": "LEO刘子渊",
+        "tns": [],
+        "alias": []
+      },
+      {
+        "id": 12967449,
+        "name": "TangoZ",
+        "tns": [],
+        "alias": []
+      },
+      {
+        "id": 1207041,
+        "name": "PRC",
+        "tns": [],
+        "alias": []
+      },
+      {
+        "id": 14587783,
+        "name": "PRC Mission",
+        "tns": [],
+        "alias": []
+      },
+      {
+        "id": 12798832,
+        "name": "周钰波",
+        "tns": [],
+        "alias": []
+      },
+      {
+        "id": 34749446,
+        "name": "notyourkei",
+        "tns": [],
+        "alias": []
+      }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "",
+    "fee": 0,
+    "v": 6,
+    "crbt": null,
+    "cf": "",
+    "al": {
+      "id": 120449834,
+      "name": "一生",
+      "picUrl": "https://p1.music.126.net/KQtMOpbhfaMbc0XZ3W0EhA==/109951165548532529.jpg",
+      "tns": [],
+      "pic_str": "109951165548532529",
+      "pic": 109951165548532530
+    },
+    "dt": 305183,
+    "h": {
+      "br": 320000,
+      "fid": 0,
+      "size": 12209325,
+      "vd": -49767
+    },
+    "m": {
+      "br": 192000,
+      "fid": 0,
+      "size": 7325613,
+      "vd": -47194
+    },
+    "l": {
+      "br": 128000,
+      "fid": 0,
+      "size": 4883757,
+      "vd": -45645
+    },
+    "a": null,
+    "cd": "01",
+    "no": 1,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 0,
+    "s_id": 0,
+    "mark": 128,
+    "originCoverType": 0,
+    "originSongSimpleData": null,
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "mv": 0,
+    "rtype": 0,
+    "rurl": null,
+    "mst": 9,
+    "cp": 0,
+    "publishTime": 0
+  },
+  {
+    "name": "踏山河",
+    "id": 1804320463,
+    "pst": 0,
+    "t": 0,
+    "ar": [
+      {
+        "id": 31002807,
+        "name": "是七叔呢",
+        "tns": [],
+        "alias": []
+      }
+    ],
+    "alia": [],
+    "pop": 100,
+    "st": 0,
+    "rt": "",
+    "fee": 8,
+    "v": 3,
+    "crbt": null,
+    "cf": "",
+    "al": {
+      "id": 120422780,
+      "name": "踏山河",
+      "picUrl": "https://p2.music.126.net/chniRNXvDaCCpCJZ7uVYug==/109951165541304779.jpg",
+      "tns": [],
+      "pic_str": "109951165541304779",
+      "pic": 109951165541304780
+    },
+    "dt": 168139,
+    "h": {
+      "br": 320002,
+      "fid": 0,
+      "size": 6727725,
+      "vd": -50968
+    },
+    "m": {
+      "br": 192002,
+      "fid": 0,
+      "size": 4036653,
+      "vd": -48375
+    },
+    "l": {
+      "br": 128002,
+      "fid": 0,
+      "size": 2691117,
+      "vd": -46714
+    },
+    "a": null,
+    "cd": "01",
+    "no": 1,
+    "rtUrl": null,
+    "ftype": 0,
+    "rtUrls": [],
+    "djId": 0,
+    "copyright": 1,
+    "s_id": 0,
+    "mark": 0,
+    "originCoverType": 1,
+    "originSongSimpleData": null,
+    "single": 0,
+    "noCopyrightRcmd": null,
+    "mv": 0,
+    "mst": 9,
+    "cp": 1416842,
+    "rtype": 0,
+    "rurl": null,
+    "publishTime": 1607961600000
+  }
+]

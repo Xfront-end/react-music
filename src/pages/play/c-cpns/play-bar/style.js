@@ -28,13 +28,15 @@ export const MusicPlayerWrapper = styled.div`
       margin-top: 5px;
       .prev {
         ${backGroundMixin(28, 28, 0, -130)};
-      }
-      .play {
-        margin: 0 10px;
-        ${backGroundMixin(36, 36, 0, -165)};
+        &:hover {
+          ${backGroundMixin(28, 28, -30, -130)};
+        }
       }
       .next {
-        ${backGroundMixin(28, 28, -110, -130)};
+        ${backGroundMixin(28, 28, -80, -130)};
+        &:hover {
+          ${backGroundMixin(28, 28, -110, -130)};
+        }
       }
     }
     .middle {
@@ -50,6 +52,18 @@ export const MusicPlayerWrapper = styled.div`
       }
       .info-progress {
         flex: 1;
+        .singer-info {
+          .mv-icon {
+            ${backGroundMixin(19, 17, 0, -57)};
+          }
+          .source-icon {
+            ${backGroundMixin(14, 15, -130, -103)};
+          }
+          .singer {
+            color: #666666;
+            margin: 0 9px 0 18px;
+          }
+        }
         .slide-time {
           display: flex;
           align-items: center;
@@ -59,12 +73,6 @@ export const MusicPlayerWrapper = styled.div`
             margin-right: 15px;
           }
         }
-      }
-      .mv-icon {
-        ${backGroundMixin(19, 17, 0, -57)};
-      }
-      .source-icon {
-        ${backGroundMixin(14, 15, -130, -103)};
       }
     }
     .right {
@@ -84,14 +92,66 @@ export const MusicPlayerWrapper = styled.div`
         .value-icon {
           ${backGroundMixin(25, 25, -2, -248)};
         }
-        .method-icon {
-          ${backGroundMixin(25, 25, -33, -344)};
-        }
         .playlist-icon {
           ${backGroundMixin(60, 25, -42, -68)};
+          .playlist-num {
+            display: inline-block;
+            line-height: 25px;
+            color: #666666;
+            font-size: 14px;
+            margin-left: 34px;
+          }
         }
       }
     }
   }
-  
+`
+
+export const PlaySwitch = styled.i`
+  ${props => {
+    if(props.playStatus) {
+      return `
+        ${backGroundMixin(36, 36, 0, -165)};
+        &:hover {
+          ${backGroundMixin(36, 36, -40, -165)};
+        }
+      `
+    }
+    return `
+      ${backGroundMixin(36, 36, 0, -204)};
+      &:hover {
+        ${backGroundMixin(36, 36, -40, -204)};
+      }
+    `
+  }}
+`
+
+export const PlayMethod = styled.i`
+  ${props => {
+    switch(props.type) {
+      case 0:
+        return `
+          ${backGroundMixin(25, 25, -3, -344)};
+          &:hover {
+            ${backGroundMixin(25, 25, -33, -344)};
+          };
+        `
+      case 1:
+        return `
+          ${backGroundMixin(25, 25, -66, -248)};
+          &:hover {
+            ${backGroundMixin(25, 25, -93, -248)};
+          };
+        `
+      case 2:
+        return `
+          ${backGroundMixin(25, 25, -66, -344)};
+          &:hover {
+            ${backGroundMixin(25, 25, -93, -344)};
+          }
+        `
+      default:
+        break
+    }
+  }};
 `

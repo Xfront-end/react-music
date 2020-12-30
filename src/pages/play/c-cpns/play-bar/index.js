@@ -1,17 +1,38 @@
-import React, {memo, useCallback, useEffect, useRef, useState} from 'react'
+import 
+  React, 
+  { 
+    memo, 
+    useCallback, 
+    useEffect, 
+    useRef, 
+    useState 
+  }  from 'react'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { Slider } from 'antd'
-import { 
-  getSongDetail,
-} from '@/request/player.js'
 import {
-  MusicPlayerWrapper
+  changePlayMethodAction,
+  getSongDetailAction,
+  getChangeCurrentSongAction
+} from '../../store/actionCreators'
+import {
+  MusicPlayerWrapper,
+  PlayMethod,
+  PlaySwitch
 } from './style'
 
-const id = 167876
-
 export default memo(() => {
-  const [song, setSong] = useState({}) 
+  const { 
+    method,
+    playlist,
+    song,
+   } = useSelector(state => ({
+    method: state.getIn(['play', 'method']),
+    playlist: state.getIn(['play', 'playlist']),
+    song: state.getIn(['play', 'currentSong']),
+  }), shallowEqual)
+  const dispatch = useDispatch()
+
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
@@ -19,9 +40,8 @@ export default memo(() => {
   const { dt: duration } = song
 
   useEffect(() => {
-    getSongDetail(id).then(res => {
-      setSong(res.songs[0])
-    })
+    dispatch(getSongDetailAction(167876))
+    console.log(song)
   }, [])
 
   const playerRef = useRef()
@@ -35,6 +55,10 @@ export default memo(() => {
       setPlaying(true)
     }
   }
+
+  const changeSong = useCallback(index => {
+    dispatch(getChangeCurrentSongAction(index))
+  })
 
   const updataCurrentTime = useCallback(() => {
     if(isChange) return
@@ -59,14 +83,24 @@ export default memo(() => {
     <MusicPlayerWrapper className="sprite_playbar">
       <audio 
         ref={playerRef} 
-        src={`https://music.163.com/song/media/outer/url?id=${id}.mp3`} 
+        src={`https://music.163.com/song/media/outer/url?id=${song.id}.mp3`} 
         onTimeUpdate={() => updataCurrentTime()}
       />
       <div className="wrap-v1 main">
         <div className="left">
-          <i className="prev sprite_playbar"></i>
-          <i className="play sprite_playbar" onClick={() => playSwitch()}></i>
-          <i className="next sprite_playbar"></i>
+          <i 
+            className="prev sprite_playbar" 
+            onClick={() => changeSong(-1)}
+          />
+          <PlaySwitch 
+            className="sprite_playbar" 
+            onClick={() => playSwitch()}
+            playStatus={playing}
+          />
+          <i 
+            className="next sprite_playbar" 
+            onClick={() => changeSong(1)}
+          />
         </div>
         <div className="middle">
           <div className="avator">
@@ -76,7 +110,7 @@ export default memo(() => {
             <div className="singer-info">
               <span className="song-name">{song.name}</span>
               <i className="mv-icon sprite_playbar"></i>
-              <span className="singer"></span>
+              <span className="singer">{song.ar && song.ar[0] && song.ar[0].name}</span>
               <i className="source-icon sprite_playbar"></i>
             </div>
             <div className="slide-time">
@@ -98,8 +132,14 @@ export default memo(() => {
           </span>
           <span className="other-operations sprite_playbar">
             <i className="value-icon sprite_playbar"></i>
-            <i className="method-icon sprite_playbar"></i>
-            <i className="playlist-icon sprite_playbar"></i>
+            <PlayMethod 
+              className="sprite_playbar" 
+              type={method}
+              onClick={() => dispatch(changePlayMethodAction())}
+            />
+            <i className="playlist-icon sprite_playbar">
+              <span className="playlist-num">{playlist.length}</span>
+            </i>
           </span>
         </div>
       </div>
