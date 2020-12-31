@@ -14,7 +14,8 @@ import Panel from '../panel'
 import {
   changePlayMethodAction,
   getSongDetailAction,
-  getChangeCurrentSongAction
+  getChangeCurrentSongAction,
+  changeLyricIndexAction
 } from '../../store/actionCreators'
 import {
   MusicPlayerWrapper,
@@ -27,10 +28,12 @@ export default memo(() => {
     method,
     playlist,
     song,
+    lyric
    } = useSelector(state => ({
     method: state.getIn(['play', 'method']),
     playlist: state.getIn(['play', 'playlist']),
     song: state.getIn(['play', 'currentSong']),
+    lyric: state.getIn(['play', 'lyric'])
   }), shallowEqual)
   const dispatch = useDispatch()
 
@@ -64,6 +67,8 @@ export default memo(() => {
   const updataCurrentTime = useCallback(() => {
     if(isChange) return
     const currentTime = playerRef.current.currentTime * 1000
+    const currentLyricIndex = lyric.findIndex(lyric => lyric.time > currentTime)
+    dispatch(changeLyricIndexAction(currentLyricIndex - 1))
     const progress = currentTime / duration * 100
     setCurrentTime(currentTime)
     setProgress(progress)

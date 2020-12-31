@@ -43,6 +43,11 @@ const PlayMethodAction = idx => ({
   payload: idx
 })
 
+export const changeLyricIndexAction = index => ({
+  type: constant.CHANGE_LYRIC_INDEX,
+  payload: index
+})
+
 export const changePlayMethodAction = () => {
   return (dispatch, getState) => {
     let method = getState().getIn(['play', 'method'])

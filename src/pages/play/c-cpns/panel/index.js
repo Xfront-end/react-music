@@ -1,6 +1,7 @@
-import React, { memo, useRef } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import classnames from 'classnames'
 import {
   PanelWrapper,
   PlayListWrapper,
@@ -15,12 +16,22 @@ export default memo(() => {
   const { 
     playlist,
     song,
-    lyric
+    lyric,
+    lyricIndex
    } = useSelector(state => ({
     playlist: state.getIn(['play', 'playlist']),
     song: state.getIn(['play', 'currentSong']),
-    lyric: state.getIn(['play', 'lyric'])
+    lyric: state.getIn(['play', 'lyric']),
+    lyricIndex: state.getIn(['play', 'lyricIndex'])
   }))
+
+  const lyricRef = useRef()
+
+  useEffect(() => {
+    if(lyricIndex > 3) {
+      lyricRef.current.scrollTo(0, lyricIndex * 32)
+    }
+  }, [lyricIndex])
 
   return (
     <PanelWrapper className="wrap-v1">
@@ -61,11 +72,14 @@ export default memo(() => {
         <LyricHeader>
           <h3 className="song-name">{song.name}</h3>
         </LyricHeader>
-        <Lyric>
+        <Lyric ref={lyricRef}>
           {
-            lyric.map(item => {
+            lyric.map((item, index) => {
               return (
-                <li key={item.time} className="lryic-sentence">
+                <li 
+                  key={item.time} 
+                  className={classnames('lryic-sentence', {active: index === lyricIndex})}
+                >
                   {item.lyric}
                 </li>
               )

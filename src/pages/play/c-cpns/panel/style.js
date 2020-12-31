@@ -69,9 +69,13 @@ export const Lyric = styled.ul`
   text-align: center;
   overflow: scroll;
   overflow-x: hidden;
+  scroll-behavior: smooth;
   .lryic-sentence {
-    height: 30px;
+    height: 32px;
     line-height: 32px;
+    &.active {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
   }
 `
 

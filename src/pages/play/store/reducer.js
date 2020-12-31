@@ -11,7 +11,8 @@ const initalState = immutable.Map({
   lyric: [],
   method: 0,
   SimiSong: [],
-  SimiPlaylist: []
+  SimiPlaylist: [],
+  lyricIndex: 0
 })
 
 const reducer = (state = initalState, action) => {
@@ -30,6 +31,8 @@ const reducer = (state = initalState, action) => {
       return state.set('SimiPlaylist', action.payload)
     case constant.CHANGE_PLAY_METHOD:
       return state.set('method', action.payload)
+    case constant.CHANGE_LYRIC_INDEX:
+      return state.set('lyricIndex', action.payload)
     default:
       return state;
   }
