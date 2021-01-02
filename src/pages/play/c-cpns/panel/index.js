@@ -29,7 +29,7 @@ export default memo(() => {
 
   useEffect(() => {
     if(lyricIndex > 3) {
-      lyricRef.current.scrollTo(0, lyricIndex * 32)
+      lyricRef.current.scrollTo(0, (lyricIndex - 3) * 32)
     }
   }, [lyricIndex])
 
@@ -37,10 +37,10 @@ export default memo(() => {
     <PanelWrapper className="wrap-v1">
       <PlayListWrapper>
         <PlayListHeader>
-          <div className="playlist-num">播放列表{playlist.length}</div>
-          <div className="ops">
-            <span><i className="fav-icon"></i>收藏全部</span>
-            <span><i className="delete-icon"></i>清除</span>
+          <div className="playlist-num">播放列表({playlist.length})</div>
+          <div className="ops"> 
+            <span className="fav-all"><i className="fav-icon sprite_playlist" />收藏全部</span>
+            <span className="clear"><i className="delete-icon sprite_playlist" />清除</span>
           </div>
         </PlayListHeader>
         <PlayList>
@@ -51,16 +51,16 @@ export default memo(() => {
                   <div className="song-name">{item.name}</div>
                   <div className="other-info">
                     <span className="opers">
-                      <i className="fav-icon">收藏</i>
-                      <i className="share-icon">分享</i>
-                      <i className="download-icon">下载</i>
-                      <i className="delete-icon">删除</i>
+                      <i className="fav-icon sprite_playlist" />
+                      <i className="share-icon sprite_playlist" />
+                      <i className="download-icon sprite_playlist" />
+                      <i className="delete-icon sprite_playlist" />
                     </span>
                     <span className="singer-name">
                       {item.ar && item.ar[0] && item.ar[0].name}
                     </span>
                     <span className="duration">{moment(item.dt).format('mm:ss')}</span>
-                    <i classNames="share-icon"></i>
+                    <i className="from-icon sprite_playlist" />
                   </div>
                 </li>
               )
@@ -71,6 +71,7 @@ export default memo(() => {
       <LyricWrapper>
         <LyricHeader>
           <h3 className="song-name">{song.name}</h3>
+          <i className="colse-panel sprite_playlist" />
         </LyricHeader>
         <Lyric ref={lyricRef}>
           {
@@ -85,6 +86,7 @@ export default memo(() => {
               )
             })
           }
+          <i className="help-icon sprite_playlist" />
         </Lyric>
       </LyricWrapper>
     </PanelWrapper>
