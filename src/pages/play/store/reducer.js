@@ -12,7 +12,9 @@ const initalState = immutable.Map({
   method: 0,
   SimiSong: [],
   SimiPlaylist: [],
-  lyricIndex: 0
+  lyricIndex: 0,
+  lock: true,
+  isPanelShow: false
 })
 
 const reducer = (state = initalState, action) => {
@@ -33,6 +35,10 @@ const reducer = (state = initalState, action) => {
       return state.set('method', action.payload)
     case constant.CHANGE_LYRIC_INDEX:
       return state.set('lyricIndex', action.payload)
+    case constant.TOGGLE_PLAYBAR_SHOW:
+      return state.set('lock', !state.get('lock'))
+    case constant.TOGGLE_PANEL_SHOW:
+      return state.set('isPanelShow', !state.get('isPanelShow'))
     default:
       return state;
   }

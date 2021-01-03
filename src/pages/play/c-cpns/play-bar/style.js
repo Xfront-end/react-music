@@ -1,21 +1,42 @@
 import styled from 'styled-components'
-
 import { backGroundMixin } from '@/utils/styleMixin'
+import playBarImg from '@/assets/img/playbar_sprite.png'
+import spriteIcon from '@/assets/img/sprite_icon.png'
 
 export const MusicPlayerWrapper = styled.div`
+  display: flex;
+  align-items: center;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   background-position: 0 0;
   background-repeat: repeat-x;
+  height: 53px;
+  zoom: 1;
+  transition: bottom .3s linear;
+  &.hiddenBar {
+    bottom: -47px;
+    transition: bottom .3s linear;
+  }
+  &:hover {
+    bottom: 0;
+    transition: bottom .3s linear;
+  }
   i {
     vertical-align: middle;
   }
+  .lock {
+    position: absolute;
+    right: 0;
+    top: -14px;
+    text-align: center;
+    ${backGroundMixin(52, 20, 0, -380)};
+  }
   .main {
-    height: 53px;
     display:flex;
     align-items: center;
+    position: relative;
     .left {
       display: flex;
       align-items: center;
@@ -42,7 +63,7 @@ export const MusicPlayerWrapper = styled.div`
       margin-right: 32px;
       color: #ffffff;
       .avator {
-        margin-right: 10px;
+        margin-right: 16px;
       }
       .info-progress {
         flex: 1;
@@ -80,11 +101,19 @@ export const MusicPlayerWrapper = styled.div`
         ${backGroundMixin(25, 25, -114, -163)};
       }
       .other-operations {
+        display: flex;
         padding-left: 13px;
         background-position: -147px -238px;
         vertical-align: middle;
-        .value-icon {
-          ${backGroundMixin(25, 25, -2, -248)};
+        .vol {
+          text-align: center;
+          .value-icon {
+            ${backGroundMixin(25, 25, -2, -248)};
+            margin: 0 3px;
+            &:hover {
+              ${backGroundMixin(25, 25, -31, -248)};
+            }
+          }
         }
         .playlist-icon {
           ${backGroundMixin(60, 25, -42, -68)};
@@ -148,4 +177,25 @@ export const PlayMethod = styled.i`
         break
     }
   }};
+`
+
+export const Lock = styled.i`
+  margin-top: 4px;
+  ${props => {
+    if(props.lock) {
+      return `
+        ${backGroundMixin(18, 18, -100, -380)};
+        &:hover {
+          ${backGroundMixin(18, 18, -100, -400)};
+        }
+      `
+    }else {
+      return `
+        ${backGroundMixin(18, 18, -80, -380)};
+        &:hover {
+          ${backGroundMixin(18, 18, -80, -400)};
+        }
+      `
+    }
+  }}
 `

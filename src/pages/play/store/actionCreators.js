@@ -48,6 +48,14 @@ export const changeLyricIndexAction = index => ({
   payload: index
 })
 
+export const togglePlayBarShowAction = () => ({
+  type: constant.TOGGLE_PLAYBAR_SHOW
+})
+
+export const togglePanelShowAction = () => ({
+  type: constant.TOGGLE_PANEL_SHOW
+})
+
 export const changePlayMethodAction = () => {
   return (dispatch, getState) => {
     let method = getState().getIn(['play', 'method'])

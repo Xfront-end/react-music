@@ -9,18 +9,24 @@ import
   }  from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import moment from 'moment'
+import classnames from 'classnames'
+import setImgSize from '@/utils/imgSize'
 import { Slider } from 'antd'
 import Panel from '../panel'
+import VolumeBar from './c-cpns/volume'
 import {
   changePlayMethodAction,
   getSongDetailAction,
   getChangeCurrentSongAction,
-  changeLyricIndexAction
+  changeLyricIndexAction,
+  togglePlayBarShowAction,
+  togglePanelShowAction
 } from '../../store/actionCreators'
 import {
   MusicPlayerWrapper,
   PlayMethod,
-  PlaySwitch
+  PlaySwitch,
+  Lock
 } from './style'
 
 export default memo(() => {
@@ -28,12 +34,18 @@ export default memo(() => {
     method,
     playlist,
     song,
-    lyric
+    lyric,
+    lock,
+    isPanelShow,
+    currentSongIndex
    } = useSelector(state => ({
     method: state.getIn(['play', 'method']),
     playlist: state.getIn(['play', 'playlist']),
     song: state.getIn(['play', 'currentSong']),
-    lyric: state.getIn(['play', 'lyric'])
+    lyric: state.getIn(['play', 'lyric']),
+    lock: state.getIn(['play', 'lock']),
+    isPanelShow: state.getIn(['play', 'isPanelShow']),
+    currentSongIndex: state.getIn(['play', 'currentSongIndex'])
   }), shallowEqual)
   const dispatch = useDispatch()
 
@@ -41,14 +53,19 @@ export default memo(() => {
   const [progress, setProgress] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [isChange, setIsChange] = useState(false)
+  const [isVolPanelShow, setIsVolPanelShow] = useState(false)
+  const [vol, setVol] = useState(50)
   const { dt: duration } = song
+
+  const playerRef = useRef()
 
   useEffect(() => {
     dispatch(getSongDetailAction(167876))
-    console.log(song)
-  }, [])
+  }, [dispatch])
 
-  const playerRef = useRef()
+  useEffect(() => {
+    playing && playerRef.current.play()
+  }, [currentSongIndex])
 
   const playSwitch = () => {
     if(playing) {
@@ -84,10 +101,23 @@ export default memo(() => {
     setIsChange(false)
     playerRef.current.currentTime = progress / 100 * duration / 1000
   })
-    
+
+  const togglePlayBar = useCallback(() => {
+    dispatch(togglePlayBarShowAction())
+  })
+
+  const updataVol = useCallback(vol => {
+    setVol(vol)
+    playerRef.current.volume = vol / 100
+  })
+
   return (
-    <MusicPlayerWrapper className="sprite_playbar">
-      <Panel></Panel>
+    <MusicPlayerWrapper 
+      lock={lock}
+      className={classnames('sprite_playbar', {hiddenBar: !lock})}
+    >
+      
+      {isPanelShow && <Panel />}
       <audio 
         ref={playerRef} 
         src={`https://music.163.com/song/media/outer/url?id=${song.id}.mp3`} 
@@ -111,14 +141,14 @@ export default memo(() => {
         </div>
         <div className="middle">
           <div className="avator">
-            <img src="http://p2.music.126.net/aXvj5BYRCoCWgdD40_CgXg==/109951165425092026.jpg?param=34y34"></img>
+            <img src={setImgSize(song.al && song.al.picUrl, 34, 34)}/>
           </div>
           <div className="info-progress">
             <div className="singer-info">
               <span className="song-name">{song.name}</span>
-              <i className="mv-icon sprite_playbar"></i>
+              <i className="mv-icon sprite_playbar" />
               <span className="singer">{song.ar && song.ar[0] && song.ar[0].name}</span>
-              <i className="source-icon sprite_playbar"></i>
+              <i className="source-icon sprite_playbar" />
             </div>
             <div className="slide-time">
               <Slider 
@@ -134,21 +164,37 @@ export default memo(() => {
         </div>
         <div className="right">
           <span>
-            <i className="fav-icon sprite_playbar"></i>
-            <i className="share-icon sprite_playbar"></i>
+            <i className="fav-icon sprite_playbar" />
+            <i className="share-icon sprite_playbar" />
           </span>
-          <span className="other-operations sprite_playbar">
-            <i className="value-icon sprite_playbar"></i>
+          <div className="other-operations sprite_playbar">
+            <div className="vol">
+              {isVolPanelShow && <VolumeBar vol={vol} updataVol={updataVol}/>}
+              <i 
+                className="value-icon sprite_playbar" 
+                onClick={() => setIsVolPanelShow(!isVolPanelShow)}
+              />
+            </div>
             <PlayMethod 
               className="sprite_playbar" 
               type={method}
               onClick={() => dispatch(changePlayMethodAction())}
             />
-            <i className="playlist-icon sprite_playbar">
+            <i 
+              className="playlist-icon sprite_playbar"
+              onClick={() => dispatch(togglePanelShowAction())}
+            >
               <span className="playlist-num">{playlist.length}</span>
             </i>
-          </span>
+          </div>
         </div>
+      </div>
+      <div className="lock sprite_playbar">
+        <Lock
+          className="lock-icon sprite_playbar" 
+          onClick={() => togglePlayBar()}
+          lock={lock}
+        />
       </div>
     </MusicPlayerWrapper>
   )
