@@ -6,3 +6,10 @@ export const backGroundMixin = (width, height, posX, poxY) => `
   background-position: ${posX}px ${poxY}px;
   cursor: pointer
 `
+
+export const backGroundHover = (width, height, posX, posY, hPosX, hPosY) => `
+  ${backGroundMixin(width, height, posX, posY)};
+  &:hover {
+    ${backGroundMixin(width, height, hPosX, hPosY)};
+  }
+`

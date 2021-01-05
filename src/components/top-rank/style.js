@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { backGroundHover } from '@/utils/styleMixin'
 
 export const RankWrapper = styled.div`
   width:230px;
@@ -25,10 +26,17 @@ export const RankHeader = styled.div`
 
 export const RankList = styled.div`
   margin-top: 20px;
+  width: 100%;
   .rank-item {
     display: flex;
     align-items: center;
     height: 32px;
+    p {
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
     .order {
       font-size: 16px;
       padding: 0 10px;
@@ -37,6 +45,27 @@ export const RankList = styled.div`
       .order {
         color: #C20C0C;
       }
+    }
+    .ops {
+      display: none;
+      min-width: 90px;
+      i {
+        margin-right: 10px;
+      }
+      .play-icon {
+        ${backGroundHover(17, 17, -267, -268, -267, -288)}
+      }
+      .add-to-icon {
+        margin-top: 4px;
+        margin-left: 1px;
+        ${backGroundHover(17, 17, 0, -700, -22, -700)}
+      }
+      .fav-icon {
+        ${backGroundHover(17, 17, -297, -268, -297, -288)}
+      }
+    }
+    &:hover .ops{
+      display: block;
     }
   }
 `

@@ -56,6 +56,10 @@ export const togglePanelShowAction = () => ({
   type: constant.TOGGLE_PANEL_SHOW
 })
 
+export const removePlayListAction = () => ({
+  type: constant.REMOVE_PLAYLIST
+})
+
 export const changePlayMethodAction = () => {
   return (dispatch, getState) => {
     let method = getState().getIn(['play', 'method'])
@@ -134,5 +138,4 @@ export const getChangeCurrentSongAction = index => {
     const { lrc } = await getLyric(currentSong.id)
     dispatch(changeLyricAction(parseLyric(lrc.lyric)))
   }
-
 }

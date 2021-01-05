@@ -39,6 +39,8 @@ const reducer = (state = initalState, action) => {
       return state.set('lock', !state.get('lock'))
     case constant.TOGGLE_PANEL_SHOW:
       return state.set('isPanelShow', !state.get('isPanelShow'))
+    case constant.REMOVE_PLAYLIST:
+      return state.set('playlist', [])
     default:
       return state;
   }

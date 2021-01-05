@@ -17,6 +17,27 @@ export const PanelWrapper = styled.div`
 
 export const PlayListWrapper = styled.div`
   width: 553px;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 20px 20px 30px;
+  .bscroll-vertical-scrollbar {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .bscroll-indicator {
+    background-color: #868686!important;
+    opacity: .8;
+    border: 5px;
+    border: none!important;
+  }
+  .no-music-tips {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
 `
 
 export const PanelHeader = styled.div`
@@ -72,18 +93,18 @@ export const PlayList = styled.ul`
     height: 30px;
     align-items: center;
     line-height: 30px;
-    padding-left: 30px;
     position: relative;
     cursor: pointer;
     .pointer-icon {
       position: absolute;
-      left:8px;
+      left:-15px;
       ${backGroundMixin(10, 13, -182, 0)};
       vertical-align: middle;
     }
     .other-info {
       display: flex;
       align-items: center;
+      margin-right: 10px;
       .opers {
         visibility: hidden;
         margin-right: 10px;
@@ -148,11 +169,15 @@ export const PlayList = styled.ul`
 export const LyricWrapper = styled.div`
   flex: 1;
   display: flex;
+  position: relative;
   .scroll-wrapper {
     justify-content: center;
     margin: 20px auto 21px auto;
     height: 219px;
     overflow: hidden;
+    .bscroll-vertical-scrollbar {
+      background: rgba(0, 0, 0, 0.5);
+    }
     .bscroll-indicator {
       background-color: #868686!important;
       opacity: .8;

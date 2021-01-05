@@ -1,5 +1,6 @@
 import React,{ memo } from 'react'
-
+import { useDispatch } from 'react-redux'
+import { getSongDetailAction } from '@/pages/play/store/actionCreators'
 import {
   RankWrapper,
   RankHeader,
@@ -8,6 +9,7 @@ import {
 } from './style'
 
 export default memo((props) => {
+  const dispatch = useDispatch()
   const { rank: { name, tracks = [], coverImgUrl} } = props
   return (
     <RankWrapper>
@@ -29,7 +31,16 @@ export default memo((props) => {
             return (
               <div key={item.id} className="rank-item">
                 <span className="order">{index + 1}</span>
-                {item.name}
+                <p>{item.name}</p>
+                <div className="ops">
+                  <i 
+                    className="play-icon sprite_02" 
+                    onClick={() => dispatch(getSongDetailAction(item.id))}
+                  />
+                  <i className="add-to-icon sprite_icon2" />
+                  <i className="fav-icon sprite_02" />
+                  <i></i>
+                </div>
               </div>
             )
           })
