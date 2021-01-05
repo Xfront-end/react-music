@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
+    "@better-scroll/core": "^2.1.0",
     "@craco/craco": "^6.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -11,6 +12,7 @@
     "antd": "^4.9.3",
     "await-to-js": "^2.1.1",
     "axios": "^0.21.0",
+    "better-scroll": "^2.1.1",
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
     "moment": "^2.29.1",

@@ -2,7 +2,7 @@ import React, { memo, useEffect, useRef, useState, useCallback, useMemo } from '
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import moment from 'moment'
 import classnames from 'classnames'
-import { Slider } from 'antd'
+import BScroll from 'better-scroll'
 import {
   PanelWrapper,
   PanelHeader,
@@ -33,30 +33,34 @@ export default memo(() => {
     lyricIndex: state.getIn(['play', 'lyricIndex']),
     currentSongIndex: state.getIn(['play', 'currentSongIndex'])
   }), shallowEqual) 
-  const [progress, setProgress] = useState(0)
-  const [PulligBar, setPullingBar] = useState(false)
-
+  const [Scroll, setScroll] = useState(null)
   const lyricRef = useRef()
 
   useEffect(() => {
-    if(lyricIndex > 3) {
-      lyricRef.current.scrollTo(0, (lyricIndex - 3) * 32)
+    const scrollInstance = new BScroll(lyricRef.current, {
+      scrollbar: {
+        fade: false,
+        interactive: true
+      },
+      mouseWheel: true,
+      bounce: false
+    })
+    setScroll(scrollInstance)
+    return () => {
+      setScroll(null)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('effect')
+    Scroll && Scroll.refresh()
+  }, [lyric])
+
+  useEffect(() => {
+    if(lyricIndex > 3 && lyricIndex < lyric.length - 3) {
+      Scroll && Scroll.scrollTo(0, -(lyricIndex - 3) * 32, 400)
     }
   }, [lyricIndex])
-
-  const ulTotalHeight = useMemo(() => 219 + (lyric.length - 14) * 32 + 5)
-
-  const scrollPanel = useCallback(p => {
-    setPullingBar(true)
-    setProgress(p)
-    lyricRef.current.scrollTo(0, Math.round(ulTotalHeight * p / 100))
-  }, [progress])
-
-  const hanleSrollProgress = () => {
-    if(!PulligBar) {
-      setProgress(Math.round(lyricRef.current.scrollTop / ulTotalHeight * 100))
-    }
-  }
 
   return (
     <PanelWrapper className="wrap-v1">
@@ -108,31 +112,23 @@ export default memo(() => {
             }
           </PlayList>
         </PlayListWrapper>
-        <LyricWrapper count={lyric.length}>
-          <Lyric ref={lyricRef} onScroll={() => hanleSrollProgress()}>
-            {
-              lyric.map((item, index) => {
-                return (
-                  <li 
-                    key={item.time} 
-                    className={classnames('lryic-sentence', {active: index === lyricIndex})}
-                  >
-                    {item.lyric}
-                  </li>
-                )
-              })
-            }
-            <i className="help-icon sprite_playlist" />
-          </Lyric>
-          <div className="lyric-scroll-bar">
-            <Slider 
-              vertical 
-              reverse 
-              tooltipVisible={false}
-              onChange={p => scrollPanel(p)}
-              value={progress}
-              onAfterChange={() => setPullingBar(false)}
-            />
+        <LyricWrapper>
+          <div ref={lyricRef} className="scroll-wrapper">
+            <Lyric>
+              {
+                lyric.map((item, index) => {
+                  return (
+                    <li 
+                      key={item.time} 
+                      className={classnames('lryic-sentence', {active: index === lyricIndex})}
+                    >
+                      {item.lyric}
+                    </li>
+                  )
+                })
+              }
+              <i className="help-icon sprite_playlist" />
+            </Lyric>
           </div>
         </LyricWrapper>
       </MainPanel>

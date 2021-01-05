@@ -104,12 +104,12 @@ export default memo(() => {
 
   const togglePlayBar = useCallback(() => {
     dispatch(togglePlayBarShowAction())
-  })
+  }, [])
 
   const updataVol = useCallback(vol => {
     setVol(vol)
     playerRef.current.volume = vol / 100
-  })
+  },[playerRef])
 
   return (
     <MusicPlayerWrapper 

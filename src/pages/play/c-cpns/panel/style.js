@@ -148,42 +148,16 @@ export const PlayList = styled.ul`
 export const LyricWrapper = styled.div`
   flex: 1;
   display: flex;
-  .lyric-scroll-bar {
-    height: 100%;
-    width: 6px;
-    background-color: #000000;
-    padding: 0 0 14px 0;
-    .ant-slider-vertical {
-      margin: 0;
-      padding: 0;
-      width: 6px;
-      .ant-slider-step {
-        width: 6px;
-      }
-    }
-    .ant-slider:hover .ant-slider-rail {
-      background: transparent;
-    }
-    .ant-slider-handle:focus {
-      box-shadow: none;
-      border: none;
-      outline: none;
-    }
-    .ant-slider-rail {
-      background: transparent;
-    }
-    .ant-slider-handle {
-      height: ${props => (219 / props.count * 6).toFixed(4)}px;
-      width: 4px;
-      border-radius: 5px;    
-      background: #868686;
-      border: 1px solid #a6a6a6;
-      box-sizing: content-box;
+  .scroll-wrapper {
+    justify-content: center;
+    margin: 20px auto 21px auto;
+    height: 219px;
+    overflow: hidden;
+    .bscroll-indicator {
+      background-color: #868686!important;
       opacity: .8;
-      margin: 0;
-    }
-    .ant-slider-track {
-      background: transparent;
+      border: 5px;
+      border: none!important;
     }
   }
 `
@@ -208,26 +182,18 @@ export const LyricHeader = styled.div`
 
 export const Lyric = styled.ul`
   flex: 1;
-  height: 219px;
   text-align: center;
-  overflow: scroll;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  position: relative;
-  margin: 20px 0 21px 0;
-  box-sizing: border-box;
   .lryic-sentence {
     height: 32px;
     line-height: 32px;
     &.active {
-      background-color: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
     }
   }
   .help-icon {
     position: absolute;
     right: 18px;
   }
-  ::-webkit-scrollbar {display:none}
 `
 
 
