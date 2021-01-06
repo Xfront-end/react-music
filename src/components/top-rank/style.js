@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import { backGroundHover } from '@/utils/styleMixin'
+import { 
+  backGroundHover
+} from '@/utils/styleMixin'
 
 export const RankWrapper = styled.div`
   width:230px;
@@ -9,11 +11,20 @@ export const RankWrapper = styled.div`
 export const RankHeader = styled.div`
   display: flex;
   .img-wrapper {
+    position: relative;
     width: 80px;
     height: 80px;
     img {
       width: 100%;
       height: 100%;
+    }
+    .glass-cover {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-position: -145px -57px;
     }
   }
   .name-operation {
@@ -21,6 +32,16 @@ export const RankHeader = styled.div`
     color: #000000;
     font-size: 14px;
     font-weight: bold;
+    .ops {
+      margin-top: 7px;
+      .play-icon {
+        ${backGroundHover(22, 22, -267, -205, -267, -235)};
+      }
+      .fav-icon {
+        margin-left: 10px;
+        ${backGroundHover(22, 22, -300, -205, -300, -235)};
+      }
+    }
   }
 `
 

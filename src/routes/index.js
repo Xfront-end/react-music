@@ -8,7 +8,7 @@ import DjRadio from '@/pages/discover/c-pages/dj-radio'
 import Artist from '@/pages/discover/c-pages/artist'
 import Ablum from '@/pages/discover/c-pages/album'
 
-export default [
+const routes = [
   {
     path: '/',
     exact: true,
@@ -54,4 +54,6 @@ export default [
     ]
   }
 ]
+
+export default routes
   

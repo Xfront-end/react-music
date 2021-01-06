@@ -20,6 +20,7 @@ const ThemeCover = (props) => {
           <div className="play-count"><i className="ear-player sprite_icon" />{playCount}</div>
           <i className="play-icon sprite_icon"></i>
         </div>
+        <a className="glass-cover sprite_covor" href=""></a>
       </div>
       <p className="intro">
         {intro}

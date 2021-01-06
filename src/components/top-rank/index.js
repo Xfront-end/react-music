@@ -16,12 +16,17 @@ export default memo((props) => {
       <RankHeader>
         <div className="img-wrapper">
           <img src={`${coverImgUrl}?param=100y100`}></img>
+          
+          <a 
+            className="glass-cover sprite_covor"
+            href="javascript:;"
+          />
         </div>
         <div className="name-operation">
           <p>{name}</p>
-          <div>
-            <i></i>
-            <i></i>
+          <div className="ops">
+            <i className="play-icon sprite_02"/>
+            <i className="fav-icon sprite_02"/>
           </div>
         </div>
       </RankHeader>

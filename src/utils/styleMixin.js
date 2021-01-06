@@ -13,3 +13,14 @@ export const backGroundHover = (width, height, posX, posY, hPosX, hPosY) => `
     ${backGroundMixin(width, height, hPosX, hPosY)};
   }
 `
+
+export const glassCoverMixin = (posX, posY) => {
+  return `
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-position: ${posX}px ${posY}px
+  `
+}

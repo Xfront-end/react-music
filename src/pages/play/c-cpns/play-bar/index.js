@@ -65,7 +65,7 @@ export default memo(() => {
 
   useEffect(() => {
     playing && playerRef.current.play()
-  }, [currentSongIndex])
+  }, [currentSongIndex, playing])
 
   const playSwitch = () => {
     if(playing) {
@@ -79,7 +79,7 @@ export default memo(() => {
 
   const changeSong = useCallback(index => {
     dispatch(getChangeCurrentSongAction(index))
-  })
+  }, [dispatch])
 
   const updataCurrentTime = useCallback(() => {
     if(isChange) return
@@ -142,6 +142,7 @@ export default memo(() => {
         <div className="middle">
           <div className="avator">
             <img src={setImgSize(song.al && song.al.picUrl, 34, 34)}/>
+            <a className="glass-cover sprite_playbar" />
           </div>
           <div className="info-progress">
             <div className="singer-info">

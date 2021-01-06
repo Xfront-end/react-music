@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { backGroundMixin } from '@/utils/styleMixin'
-import playBarImg from '@/assets/img/playbar_sprite.png'
-import spriteIcon from '@/assets/img/sprite_icon.png'
+import { 
+  backGroundMixin,
+  glassCoverMixin
+} from '@/utils/styleMixin'
 
 export const MusicPlayerWrapper = styled.div`
   display: flex;
@@ -64,6 +65,10 @@ export const MusicPlayerWrapper = styled.div`
       color: #ffffff;
       .avator {
         margin-right: 16px;
+        position: relative;
+        .glass-cover {
+          ${glassCoverMixin(0, -80)};
+        }
       }
       .info-progress {
         flex: 1;
